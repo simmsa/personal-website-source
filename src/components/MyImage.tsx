@@ -1,4 +1,3 @@
-import { graphql, StaticQuery } from "gatsby";
 import * as React from "react";
 
 import Image from "react-bootstrap/Image";

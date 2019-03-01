@@ -2,6 +2,11 @@ import { graphql, StaticQuery } from "gatsby";
 import * as React from "react";
 
 import "../../lib/bootstrap/bootstrap.css";
+
+import Button from "react-bootstrap/Button";
+import ButtonGroup from "react-bootstrap/ButtonGroup";
+
+import Footer from "./Footer";
 import Header from "./Header";
 import SEO from "./Seo";
 
@@ -34,25 +39,7 @@ const Layout = (props: LayoutProps) => (
           }}
         >
           <main>{props.children}</main>
-          <footer
-            style={{
-              alignItems: "center",
-              display: "flex",
-              justifyContent: "center",
-              marginTop: "1.45rem",
-            }}
-          >
-            © {new Date().getFullYear()}
-            <a href="https://github.com/simmsa" style={{ paddingLeft: "1em" }}>
-              Github
-            </a>
-            <a
-              href="https://twitter.com/andrewdsimms"
-              style={{ paddingLeft: "1em" }}
-            >
-              Twitter
-            </a>
-          </footer>
+          <Footer />
         </div>
       </>
     )}

@@ -1,6 +1,7 @@
 import * as React from "react";
 
-import { Link } from "gatsby";
+import Nav from "react-bootstrap/Nav";
+import Navbar from "react-bootstrap/Navbar";
 
 import theme from "../theme";
 
@@ -8,32 +9,53 @@ interface HeaderProps {
   siteTitle: string;
 }
 
+interface HeaderTextProps {
+  children: string;
+}
+
+const HeaderText = (props: HeaderTextProps) => (
+  <span
+    className="font-weight-light text-uppercase"
+    style={{
+      fontWeight: 200,
+      letterSpacing: "1px",
+    }}
+  >
+    <small>{props.children}</small>
+  </span>
+);
+
 const Header = (props: HeaderProps) => (
   <header
     style={{
       background: theme.brand_color,
-      marginBottom: `1.45rem`,
     }}
+    className={"mb-5"}
   >
-    <div
+    <Navbar
+      variant="dark"
       style={{
-        margin: `0 auto`,
-        maxWidth: 960,
-        padding: `1.45rem 1.0875rem`,
+        backgroundColor: theme.brand_color,
+        margin: "0 auto",
+        maxWidth: "960px",
       }}
+      className="d-flex"
     >
-      <h1 style={{ margin: 0 }}>
-        <Link
-          to="/"
-          style={{
-            color: `white`,
-            textDecoration: `none`,
-          }}
-        >
-          {props.siteTitle}
-        </Link>
-      </h1>
-    </div>
+      <Navbar.Brand href="/" className="flex-grow-1">
+        <HeaderText>{props.siteTitle}</HeaderText>
+      </Navbar.Brand>
+      <Nav>
+        <Nav.Link href="/blog/">
+          <HeaderText>Blog</HeaderText>
+        </Nav.Link>
+        <Nav.Link href="/projects/">
+          <HeaderText>Projects</HeaderText>
+        </Nav.Link>
+        <Nav.Link href="/photography/">
+          <HeaderText>Photography</HeaderText>
+        </Nav.Link>
+      </Nav>
+    </Navbar>
   </header>
 );
 

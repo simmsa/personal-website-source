@@ -3,6 +3,7 @@ module.exports = {
     title: `Andrew Simms`,
     description: `Programmer, photographer, guitar player and maker currently living in Golden, Colorado.`,
     author: `@andrewdsimms`,
+    authorName: `Andrew Simms`,
   },
   plugins: [
     {

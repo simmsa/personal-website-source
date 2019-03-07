@@ -45,24 +45,41 @@ const FooterItem = (props: FooterItemProps) => {
   return <Separator {...props} />;
 };
 
+interface FooterRowProps {
+  children: React.ReactNode;
+  marginTop?: number;
+}
+
+const FooterRow = (props: FooterRowProps) => (
+  <div
+    className={`d-flex justify-content-center align-items-center mt-${props.marginTop ||
+      1}`}
+  >
+    {props.children}
+  </div>
+);
+
 const Footer = () => (
-  <footer className="d-flex justify-content-center align-items-center">
-    <FooterItem text={`© ${new Date().getFullYear()}`} />
-    <FooterItem
-      text="Email"
-      link="mailto:simms.andrew@gmail.com"
-      hasSeparator={true}
-    />
-    <FooterItem
-      text="Github"
-      link="https://github.com/simmsa"
-      hasSeparator={true}
-    />
-    <FooterItem
-      text="Twitter"
-      link="https://twitter.com/andrewdsimms"
-      hasSeparator={true}
-    />
+  <footer className="mt-5">
+    <FooterRow>
+      <FooterItem text={`© ${new Date().getFullYear()} Andrew Simms`} />
+    </FooterRow>
+    <FooterRow>
+      <FooterItem text="Email" link="mailto:simms.andrew@gmail.com" />
+      <FooterItem
+        text="Github"
+        link="https://github.com/simmsa"
+        hasSeparator={true}
+      />
+      <FooterItem
+        text="Twitter"
+        link="https://twitter.com/andrewdsimms"
+        hasSeparator={true}
+      />
+    </FooterRow>
+    <FooterRow>
+      <FooterItem text={"Built With Gatsby"} link="https://www.gatsbyjs.org/" />
+    </FooterRow>
   </footer>
 );
 

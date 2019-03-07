@@ -3,9 +3,6 @@ import * as React from "react";
 
 import "../../lib/bootstrap/bootstrap.css";
 
-import Button from "react-bootstrap/Button";
-import ButtonGroup from "react-bootstrap/ButtonGroup";
-
 import Footer from "./Footer";
 import Header from "./Header";
 import SEO from "./Seo";

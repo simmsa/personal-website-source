@@ -45,6 +45,9 @@ const Header = (props: HeaderProps) => (
         <HeaderText>{props.siteTitle}</HeaderText>
       </Navbar.Brand>
       <Nav>
+        <Nav.Link href="/about/">
+          <HeaderText>About</HeaderText>
+        </Nav.Link>
         <Nav.Link href="/blog/">
           <HeaderText>Blog</HeaderText>
         </Nav.Link>

@@ -2,6 +2,8 @@ import { graphql, StaticQuery } from "gatsby";
 import * as React from "react";
 import Helmet from "react-helmet";
 
+import theme from "../theme";
+
 const detailsQuery = graphql`
   query DefaultSEOQuery {
     site {
@@ -87,7 +89,40 @@ const SEO = (props: SEOMetadata) => {
                 content: metaDescription,
                 name: `twitter:description`,
               },
+              {
+                content: theme.brand_color,
+                name: `msappliaction-TileColor`,
+              },
+              {
+                content: theme.brand_color,
+                name: `theme-color`,
+              },
             ].concat(additionalMeta)}
+            link={[
+              {
+                href: "/apple-touch-icon.png",
+                rel: "apple-touch-icon",
+                sizes: "180x180",
+              },
+              {
+                href: "/favicon-32x32.png",
+                rel: "icon",
+                sizes: "32x32",
+                type: "image/png",
+              },
+              {
+                href: "/favicon-16x16.png",
+                rel: "icon",
+                sizes: "16x16",
+                type: "image/png",
+              },
+              { rel: "manifest", href: "/site.webmanifest" },
+              {
+                color: theme.brand_color,
+                href: "/safari-pinned-tab.svg",
+                rel: "mask-icon",
+              },
+            ]}
           />
         );
       }}

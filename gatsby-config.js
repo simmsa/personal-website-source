@@ -37,6 +37,12 @@ module.exports = {
               linkImagesToOriginal: true,
             },
           },
+          {
+            resolve: `gatsby-remark-prismjs`,
+            options: {
+              classPrefix: "language-",
+            },
+          },
         ],
       },
     },

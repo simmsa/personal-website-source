@@ -1,5 +1,8 @@
 import * as React from "react";
 
+import { graphql, StaticQuery } from "gatsby";
+import Img from "gatsby-image";
+
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 
@@ -11,55 +14,88 @@ interface HeaderProps {
 
 interface HeaderTextProps {
   children: string;
+  isUppercase?: boolean;
 }
 
 const HeaderText = (props: HeaderTextProps) => (
   <span
-    className="font-weight-light text-uppercase"
+    className={`${props.isUppercase === false ? "" : "text-uppercase"} small`}
     style={{
-      fontWeight: 200,
-      letterSpacing: "1px",
+      letterSpacing: props.isUppercase === false ? "0px" : "1px",
     }}
   >
-    <small>{props.children}</small>
+    {props.children}
   </span>
 );
 
 const Header = (props: HeaderProps) => (
-  <header
-    style={{
-      background: theme.brand_color,
-    }}
-    className={"mb-5"}
-  >
-    <Navbar
-      variant="dark"
-      style={{
-        backgroundColor: theme.brand_color,
-        margin: "0 auto",
-        maxWidth: "960px",
-      }}
-      className="d-flex"
-    >
-      <Navbar.Brand href="/" className="flex-grow-1">
-        <HeaderText>{props.siteTitle}</HeaderText>
-      </Navbar.Brand>
-      <Nav>
-        <Nav.Link href="/about/">
-          <HeaderText>About</HeaderText>
-        </Nav.Link>
-        <Nav.Link href="/blog/">
-          <HeaderText>Blog</HeaderText>
-        </Nav.Link>
-        <Nav.Link href="/projects/">
-          <HeaderText>Projects</HeaderText>
-        </Nav.Link>
-        <Nav.Link href="/photography/">
-          <HeaderText>Photography</HeaderText>
-        </Nav.Link>
-      </Nav>
-    </Navbar>
-  </header>
+  <StaticQuery
+    query={graphql`
+      query {
+        file(relativePath: { eq: "images/Andrew-Simms.jpg" }) {
+          childImageSharp {
+            fixed(width: 30, height: 30) {
+              ...GatsbyImageSharpFixed
+            }
+          }
+        }
+      }
+    `}
+    render={(data) => (
+      <header
+        style={{
+          background: theme.brand_color,
+        }}
+        className={"mb-5"}
+      >
+        <Navbar
+          variant="dark"
+          style={{
+            backgroundColor: theme.brand_color,
+            margin: "0 auto",
+            maxWidth: "960px",
+          }}
+          className="d-flex"
+        >
+          <Navbar.Brand
+            href="/"
+            className="d-flex flex-grow-1 align-items-center"
+          >
+            <Img
+              fixed={data.file.childImageSharp.fixed}
+              className="rounded-circle mr-3"
+              alt="Andrew Simms"
+            />
+            <HeaderText isUppercase={false}>{props.siteTitle}</HeaderText>
+          </Navbar.Brand>
+          <Nav>
+            <Nav.Link href="/about/" className="d-flex align-items-center">
+              <HeaderText>About</HeaderText>
+            </Nav.Link>
+            <Nav.Link href="/blog/" className="d-flex align-items-center">
+              <HeaderText>Blog</HeaderText>
+            </Nav.Link>
+            <Nav.Link href="/projects/" className="d-flex align-items-center">
+              <HeaderText>Projects</HeaderText>
+            </Nav.Link>
+            <Nav.Link
+              href="/photography/"
+              className="d-flex align-items-center"
+            >
+              <HeaderText>Photography</HeaderText>
+            </Nav.Link>
+          </Nav>
+        </Navbar>
+      </header>
+    )}
+  />
 );
+// <Image
+//   src={Portrait}
+//   alt=""
+//   height={30}
+//   width={30}
+//   roundedCircle={true}
+// />
 
 export default Header;

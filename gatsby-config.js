@@ -39,6 +39,12 @@ module.exports = {
             },
           },
           {
+            resolve: `gatsby-remark-embed-snippet`,
+            options: {
+              directory: `${__dirname}/src/pages/blog`,
+            },
+          },
+          {
             resolve: `gatsby-remark-prismjs`,
             options: {
               classPrefix: "language-",

@@ -1,9 +1,12 @@
 import * as React from "react";
 
 import { graphql } from "gatsby";
-import "../components/sustain-syntax-highlighting.css";
+import Img from "gatsby-image";
 
 import Layout from "../components/Layout";
+import SubText from "../components/text/SubText";
+
+import "../components/sustain-syntax-highlighting.css";
 
 // Here we specifically using what gatsby calls a "pageQuery" as opposed to a StaticQuery
 // because we are searching for a specific blog post with the variable `slug`
@@ -24,6 +27,14 @@ export const query = graphql`
       frontmatter {
         title
         date(formatString: "MMMM D, YYYY")
+        hero {
+          childImageSharp {
+            fluid(maxWidth: 960) {
+              ...GatsbyImageSharpFluid
+            }
+          }
+        }
+        hero_description
       }
     }
   }
@@ -60,6 +71,12 @@ const BlogPost = (props: BlogPostProps) => {
           {post.frontmatter.date}
         </small>
       </p>
+      <Img fluid={post.frontmatter.hero.childImageSharp.fluid} />
+      {post.frontmatter.hero_description !== "" ? (
+        <div className="d-flex align-items-center justify-content-center mb-3 mt-1">
+          <SubText isMuted={true}>{post.frontmatter.hero_description}</SubText>
+        </div>
+      ) : null}
       <div dangerouslySetInnerHTML={{ __html: post.html }} />
     </Layout>
   );

@@ -1,9 +1,9 @@
 {
-  "name": "gatsby-starter-default",
+  "name": "Andrew-Simms-Personal-Website",
   "private": true,
-  "description": "A simple starter to get up and developing quickly with Gatsby",
+  "description": "Andrew Simms' Personal Website",
   "version": "0.1.0",
-  "author": "Kyle Mathews <mathews.kyle@gmail.com>",
+  "author": "Andrew Simms <simms.andrew@gmail.com>",
   "dependencies": {
     "@types/react-helmet": "^5.0.8",
     "bootstrap": "^4.3.1",

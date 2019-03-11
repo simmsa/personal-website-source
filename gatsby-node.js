@@ -1,6 +1,8 @@
 const path = require(`path`)
 const { createFilePath } = require(`gatsby-source-filesystem`)
 
+const slugify = require("slugify")
+
 /**
  * Implement Gatsby's Node APIs in this file.
  * See: https://www.gatsbyjs.org/docs/node-apis/
@@ -27,14 +29,30 @@ exports.createPages = ({ graphql, actions }) => {
             fields {
               slug
             }
+            frontmatter {
+              title
+            }
           }
         }
       }
     }
   `).then(result => {
     result.data.allMarkdownRemark.edges.forEach(({ node }) => {
+      const slugPath = node.fields.slug
+        .split("/")
+        .slice(0, -2)
+        .join("/")
+      const slug =
+        slugPath +
+        "/" +
+        slugify(node.frontmatter.title, {
+          replacement: "-",
+          remove: /[*+~.()'"!:@]/g,
+          lower: true,
+        })
       createPage({
-        path: node.fields.slug,
+        // path: node.fields.slug,
+        path: slug,
         component: path.resolve(`./src/templates/BlogPost.tsx`),
         context: {
           slugString: node.fields.slug,

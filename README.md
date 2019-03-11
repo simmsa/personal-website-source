@@ -1,46 +1,80 @@
-<!-- AUTO-GENERATED-CONTENT:START (STARTER) -->
-<p align="center">
-  <a href="https://www.gatsbyjs.org">
-    <img alt="Gatsby" src="https://www.gatsbyjs.org/monogram.svg" width="60" />
-  </a>
-</p>
-<h1 align="center">
-  Gatsby's default starter
-</h1>
+This is the source code of [andrewdsimms.com](andrewdsimms.com)
 
-Kick off your project with this default boilerplate. This starter ships with the main Gatsby configuration files you might need to get up and running blazing fast with the blazing fast app generator for React.
+# How to deploy
 
-_Have another more specific idea? You may want to check out our vibrant collection of [official and community-created starters](https://www.gatsbyjs.org/docs/gatsby-starters/)._
+`npm run deploy`
 
-## 🚀 Quick start
+Which runs `gatsby deploy` and then posts to github pages. For new blog posts with lots of media gh-pages can be slow, so be patient.
 
-1.  **Create a Gatsby site.**
+# Pushing source code
 
-    Use the Gatsby CLI to create a new site, specifying the default starter.
+Github pages uses remote origin, so there is a separate [repository for the source code](https://github.com/simmsa/personal-website-source). To push to this repo use:
 
-    ```sh
-    # create a new Gatsby site using the default starter
-    npx gatsby new my-default-starter https://github.com/gatsbyjs/gatsby-starter-default
-    ```
+`git push source master`
 
-1.  **Start developing.**
+# Blogging
 
-    Navigate into your new site’s directory and start it up.
+## Creating a New Blog Post
 
-    ```sh
-    cd my-default-starter/
-    gatsby develop
-    ```
+In the `src/pages/blog` directory create a new folder (folder name doesn't matter, blog post slug is generated from frontmatter title) with an `index.md` file containing:
 
-1.  **Open the source code and start editing!**
+```md
+---
+title: Post Title
+description: Description
+date: "2019-03-07"
+published: true
+tags: "Tags, separated, by, commas"
+hero: "hero_placeholder.jpg"
+hero_description: ""
+---
+```
 
-    Your site is now running at `http://localhost:8000`!
+To easily create this use the snippet `fm`
 
-    _Note: You'll also see a second link: _`http://localhost:8000/___graphql`_. This is a tool you can use to experiment with querying your data. Learn more about using this tool in the [Gatsby tutorial](https://www.gatsbyjs.org/tutorial/part-five/#introducing-graphiql)._
+## About Markdown
 
-    Open the `my-default-starter` directory in your code editor of choice and edit `src/pages/index.js`. Save your changes and the browser will update in real time!
+# Markdown Flavor
+
+See https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet
+
+### Images
+Image links are relative to the blog post directory. Place all images in the post directory and use:
+
+```md
+![Alt Text](image_filename.extension)
+```
+
+Snippet is `img`
+
+### Hosting files
+Hosted or static files should be put in the `static/blogfiles` folder and can be accessed with:
+
+```md
+[Link](/blogfiles/filename.extension)
+```
+
+Snippet is `a`, `l`, or `link`
+
+This link won't work until `gatsby build` is run.
+
+### Embed Files
+
+You can embed files, essentially an include with:
+
+```md
+`embed:this_post_dir/filename.extension`
+```
+
+Snippet is `em` or `embed` and automatically finds `this_post_dir`
+
+# How this is setup
+
+This site uses [gatsby](https://www.gatsbyjs.org). I am using github pages which puts the generated html [here](https://github.com/simmsa/simmsa.github.io) and serves the actual website from this directory.
 
 ## 🧐 What's inside?
+
+From default readme - kept for reference
 
 A quick look at the top-level files and directories you'll see in a Gatsby project.
 
@@ -82,16 +116,3 @@ A quick look at the top-level files and directories you'll see in a Gatsby proje
 
 12. **`README.md`**: A text file containing useful reference information about your project.
 
-## 🎓 Learning Gatsby
-
-Looking for more guidance? Full documentation for Gatsby lives [on the website](https://www.gatsbyjs.org/). Here are some places to start:
-
-- **For most developers, we recommend starting with our [in-depth tutorial for creating a site with Gatsby](https://www.gatsbyjs.org/tutorial/).** It starts with zero assumptions about your level of ability and walks through every step of the process.
-
-- **To dive straight into code samples, head [to our documentation](https://www.gatsbyjs.org/docs/).** In particular, check out the _Guides_, _API Reference_, and _Advanced Tutorials_ sections in the sidebar.
-
-## 💫 Deploy
-
-[![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/gatsbyjs/gatsby-starter-default)
-
-<!-- AUTO-GENERATED-CONTENT:END -->

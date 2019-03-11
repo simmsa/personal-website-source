@@ -5,6 +5,7 @@ import Img from "gatsby-image";
 
 import Layout from "../components/Layout";
 import SubText from "../components/text/SubText";
+import SubTextRow from "../components/text/SubTextRow";
 
 import "../components/sustain-syntax-highlighting.css";
 
@@ -35,6 +36,7 @@ export const query = graphql`
           }
         }
         hero_description
+        tags
       }
     }
   }
@@ -66,11 +68,13 @@ const BlogPost = (props: BlogPostProps) => {
         `}
       </style>
       <h1 className="display-4">{post.frontmatter.title}</h1>
-      <p>
-        <small className="text-uppercase" style={{ letterSpacing: "1px" }}>
-          {post.frontmatter.date}
-        </small>
-      </p>
+      <div className="mb-3">
+        <SubTextRow isMuted={true}>
+          <SubText>Andrew Simms</SubText>
+          <SubText hasSeparator={true}>{post.frontmatter.date}</SubText>
+          <SubText hasSeparator={true}>{post.frontmatter.tags}</SubText>
+        </SubTextRow>
+      </div>
       <Img fluid={post.frontmatter.hero.childImageSharp.fluid} />
       {post.frontmatter.hero_description !== "" ? (
         <div className="d-flex align-items-center justify-content-center mb-3 mt-1">

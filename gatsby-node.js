@@ -10,11 +10,25 @@ const slugify = require("slugify")
 exports.onCreateNode = ({ node, getNode, actions }) => {
   const { createNodeField } = actions
   if (node.internal.type === `MarkdownRemark`) {
-    const slug = createFilePath({ node, getNode, basePath: `pages` })
+    const filePath = createFilePath({ node, getNode, basePath: `pages` })
+    const slug = slugify(node.frontmatter.title, {
+      replacement: "-",
+      remove: /[*+~.()'"!:@]/g,
+      lower: true,
+    })
+
+    // Remove the last part of the path and replace with the slugified title
+    const fullPath =
+      filePath
+        .split("/")
+        .slice(0, -2)
+        .join("/") +
+      "/" +
+      slug
     createNodeField({
       node,
       name: `slug`,
-      value: slug,
+      value: fullPath,
     })
   }
 }
@@ -29,30 +43,14 @@ exports.createPages = ({ graphql, actions }) => {
             fields {
               slug
             }
-            frontmatter {
-              title
-            }
           }
         }
       }
     }
   `).then(result => {
     result.data.allMarkdownRemark.edges.forEach(({ node }) => {
-      const slugPath = node.fields.slug
-        .split("/")
-        .slice(0, -2)
-        .join("/")
-      const slug =
-        slugPath +
-        "/" +
-        slugify(node.frontmatter.title, {
-          replacement: "-",
-          remove: /[*+~.()'"!:@]/g,
-          lower: true,
-        })
       createPage({
-        // path: node.fields.slug,
-        path: slug,
+        path: node.fields.slug,
         component: path.resolve(`./src/templates/BlogPost.tsx`),
         context: {
           slugString: node.fields.slug,

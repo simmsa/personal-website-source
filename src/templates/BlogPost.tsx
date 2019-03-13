@@ -7,7 +7,7 @@ import Layout from "../components/Layout";
 import SubText from "../components/text/SubText";
 import SubTextRow from "../components/text/SubTextRow";
 
-import "../components/sustain-syntax-highlighting.css";
+import "../../node_modules/prismjs/themes/prism.css";
 
 // Here we specifically using what gatsby calls a "pageQuery" as opposed to a StaticQuery
 // because we are searching for a specific blog post with the variable `slug`

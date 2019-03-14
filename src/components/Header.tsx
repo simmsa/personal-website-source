@@ -56,7 +56,7 @@ const Header = (props: HeaderProps) => (
             maxWidth: "960px",
           }}
           className="d-flex"
-          expand="sm"
+          expand="md"
         >
           <Navbar.Brand
             href="/"

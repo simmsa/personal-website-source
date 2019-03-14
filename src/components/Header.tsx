@@ -71,8 +71,8 @@ const Header = (props: HeaderProps) => (
           </Navbar.Brand>
 
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-          <Navbar.Collapse bsPrefix="navbar-collapse d-flex justify-content-end">
-            <Nav>
+          <Navbar.Collapse>
+            <Nav className="d-flex flex-grow-1 justify-content-end">
               <Nav.Link href="/about/" className="d-flex align-items-center">
                 <HeaderText>About</HeaderText>
               </Nav.Link>

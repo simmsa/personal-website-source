@@ -42,9 +42,11 @@ const SubTextRow = (props: SubTextRowProps) => {
 
   return (
     <div
-      className={`d-flex flex-row mt-${margin.top} mb-${margin.bottom} mr-${
-        margin.right
-      } ml-${margin.left} justify-content-${props.justifyContent || "start"}`}
+      className={`d-flex flex-row flex-wrap mt-${margin.top} mb-${
+        margin.bottom
+      } mr-${margin.right} ml-${
+        margin.left
+      } justify-content-${props.justifyContent || "start"}`}
     >
       {props.isMuted ? childrenWithProps : props.children}
     </div>

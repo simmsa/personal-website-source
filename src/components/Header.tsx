@@ -63,7 +63,7 @@ const Header = (props: HeaderProps) => (
           >
             <Img
               fixed={data.file.childImageSharp.fixed}
-              className="rounded-circle mr-3"
+              className="rounded-circle mr-3 d-none d-md-block"
               alt="Andrew Simms"
             />
             <HeaderText isUppercase={false}>{props.siteTitle}</HeaderText>

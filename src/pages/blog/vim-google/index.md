@@ -2,7 +2,7 @@
 title: Searching Google From Inside Vim
 description: Writing a plugin to search google from Vim
 date: "2019-03-11"
-published: true
+published: false
 tags: "Vim, Neovim, vimscript, google"
 hero: "hero_placeholder.jpg"
 hero_description: "Googling from Vim is bliss"

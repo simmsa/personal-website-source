@@ -65,6 +65,10 @@ const BlogPost = (props: BlogPostProps) => {
           ol ul {
             margin-bottom: 1em;
           }
+
+          p, pre {
+          margin-bottom: 1em !important;
+          }
         `}
       </style>
       <h1 className="display-4">{post.frontmatter.title}</h1>

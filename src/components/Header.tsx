@@ -56,6 +56,7 @@ const Header = (props: HeaderProps) => (
             maxWidth: "960px",
           }}
           className="d-flex"
+          expand="sm"
         >
           <Navbar.Brand
             href="/"
@@ -68,34 +69,31 @@ const Header = (props: HeaderProps) => (
             />
             <HeaderText isUppercase={false}>{props.siteTitle}</HeaderText>
           </Navbar.Brand>
-          <Nav>
-            <Nav.Link href="/about/" className="d-flex align-items-center">
-              <HeaderText>About</HeaderText>
-            </Nav.Link>
-            <Nav.Link href="/blog/" className="d-flex align-items-center">
-              <HeaderText>Blog</HeaderText>
-            </Nav.Link>
-            <Nav.Link href="/projects/" className="d-flex align-items-center">
-              <HeaderText>Projects</HeaderText>
-            </Nav.Link>
-            <Nav.Link
-              href="/photography/"
-              className="d-flex align-items-center"
-            >
-              <HeaderText>Photography</HeaderText>
-            </Nav.Link>
-          </Nav>
+
+          <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+          <Navbar.Collapse>
+            <Nav>
+              <Nav.Link href="/about/" className="d-flex align-items-center">
+                <HeaderText>About</HeaderText>
+              </Nav.Link>
+              <Nav.Link href="/blog/" className="d-flex align-items-center">
+                <HeaderText>Blog</HeaderText>
+              </Nav.Link>
+              <Nav.Link href="/projects/" className="d-flex align-items-center">
+                <HeaderText>Projects</HeaderText>
+              </Nav.Link>
+              <Nav.Link
+                href="/photography/"
+                className="d-flex align-items-center"
+              >
+                <HeaderText>Photography</HeaderText>
+              </Nav.Link>
+            </Nav>
+          </Navbar.Collapse>
         </Navbar>
       </header>
     )}
   />
 );
-// <Image
-//   src={Portrait}
-//   alt=""
-//   height={30}
-//   width={30}
-//   roundedCircle={true}
-// />
 
 export default Header;

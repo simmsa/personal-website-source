@@ -69,9 +69,12 @@ const BlogPost = (props: BlogPostProps) => {
           p, pre {
           margin-bottom: 1em !important;
           }
+          h1, h2, h3, h4, h5, h6 {
+            font-weight: 300;
+          }
         `}
       </style>
-      <h1 className="display-4">{post.frontmatter.title}</h1>
+      <h1>{post.frontmatter.title}</h1>
       <div className="mb-3">
         <SubTextRow isMuted={true}>
           <SubText>Andrew Simms</SubText>

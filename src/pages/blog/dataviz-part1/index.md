@@ -1,31 +1,33 @@
 ---
-title: Real World Data Visualization With Python and Matplotlib Part 1
+title: Real World Data Visualization With Python and matplotlib Part 1
 description: Finding data and working with matplotlib
 date: "2019-03-07"
 published: true
-tags: "Python, matplotlib, dataviz"
+tags: "Python, matplotlib, Data Visualization"
 hero: "January-2019-NWTC-Temp-2m-Plot-cropped.png"
 hero_description: "Temperature data rendered by matplotlib"
 ---
 
-This the first part in a multipart series on real world data visualization with python and matplotlib. Links to other posts will be added as they are created.
+This the first part in a multipart series on real world data visualization with python and matplotlib. I will add links to other posts as they become available.
 
-[Python](https://www.python.org/) and [matplotlib] are powerful tools for parsing and visualizing data. Python is an easy to use scripting language with many awesome tools for working with various types of data. Matplotlib, in my opinion, is the most comprehensive and easiest to use data visualization tool out there. Together they can help extract meaning from data.
+[Python](https://www.python.org/) and [matplotlib] are powerful tools for parsing and visualizing data. Python is an easy to use scripting language with awesome tools for working with data. Matplotlib is the most comprehensive and easiest to use data visualization tool in Python. Together they can help extract meaning from data.
 
 # Finding Data
 
-There are [petabytes](https://en.wikipedia.org/wiki/Petabyte) of data that exist in the world today, so finding some data is not a problem. But finding the right data for you is the challenge.
+[Petabytes](https://en.wikipedia.org/wiki/Petabyte) of data exist in the world today, so finding some data is not a problem. But finding the right data for you is the challenge.
 
 When you are looking for data to visualize the data set you choose needs:
 
 1. Data you are familiar with and understand
-   - This helps immensely when sanitizing the data. If you don't know what a bogus value looks like your plot can convey the wrong information, or just look wrong.
 
-2. An easily parseable data format like [`json`](https://en.wikipedia.org/wiki/JSON) or [`csv`](https://en.wikipedia.org/wiki/Comma-separated_values)
-    - Anything in html, xml, or other formats will need to be processed, which can be difficult and time consuming (it is possible, just outside the scope of this post)
+   - This helps immensely when sanitizing the data. If you don't know what a bogus value looks like your plot can convey the wrong information.
+
+2. A parseable data format like [`json`](https://en.wikipedia.org/wiki/JSON) or [`csv`](https://en.wikipedia.org/wiki/Comma-separated_values)
+
+   - Anything in html, xml, or other formats needs processing, which can be difficult and time consuming (for python xml parsing look into [beautiful soup](https://www.crummy.com/software/BeautifulSoup/bs4/doc/))
 
 3. Customizable data intervals
-    - This allows you to iterate quickly on a small data set before working with a larger data set, which can be slow.
+   - This allows you to iterate on a small data set before working with a larger data set, which can be slow.
 
 Given these suggestions we are going to start with a data set that I am familiar with, [weather data][weather_data] from the [National Renewable Energy Lab](https://www.nrel.gov/) [National Wind Technology Center](https://www.nrel.gov/nwtc/) in [Boulder Colorado](https://en.wikipedia.org/wiki/Boulder,_Colorado).
 
@@ -39,11 +41,11 @@ Select the `Selected 1-Min Data (ZIP Compressed)` option and hit submit. Unzip t
 
 ![Selecting zip option](selecting_zip_option.png)
 
-For convience you can download this data [here](/blogfiles/2019-01-nwtc-temp-2m.csv).
+For convenience you can download this data [here](/blogfiles/2019-01-nwtc-temp-2m.csv).
 
 # Inspecting
 
-Lets go ahead and see what this data looks like. We can use the [`head`](https://en.wikipedia.org/wiki/Head_(Unix)) command to see the first part of the file:
+Lets go ahead and see what this data looks like. We can use the [`head`](<https://en.wikipedia.org/wiki/Head_(Unix)>) command to see the first part of the file:
 
 ```sh
 $ head 2019-01-nwtc-temp-2m.csv
@@ -59,7 +61,7 @@ DATE (MM/DD/YYYY),MST,Temperature @ 2m [deg C]
 1/1/2019,00:08,-16.66
 ```
 
-From this we can see the shape of the data. There are 3 columns, the date, the time in [MST](https://en.wikipedia.org/wiki/Mountain_Time_Zone) and the temperature is celsius degrees. 
+From this we can see the shape of the data which has 3 rows, the date, the time in [MST](https://en.wikipedia.org/wiki/Mountain_Time_Zone) and the temperature is Celsius degrees.
 
 We can count the number of rows with the [wc](https://linux.die.net/man/1/wc) (word count) utility, passing the `-l` argument to get the number of lines:
 
@@ -68,14 +70,13 @@ $ wc -l 2019-01-nwtc-temp-2m.csv
 44641 2019-01-nwtc-temp-2m.csv
 ```
 
-There are 60 minutes in an hour, 24 hours a day, and 31 days in January which works out to (60 * 24 * 31) 44640 minutes. Add in an extra row for the titles and 44641 adds up, so lets proceed.
+Lets verify this number. Given the first couple of rows it seems like they record the temperature every minute. Lets add it up, 60 minutes in an hour, 24 hours a day, and 31 days in January works out to (`60 * 24 * 31`) 44640 minutes. Add in an extra row for the titles and 44641 proves that they recorded the temperature every minute.
 
 # Parsing Data
 
-To get a feel for parsing lets find the min and max temperatures in degrees farenheit.
+To get a feel for parsing lets find the min and max temperatures in degrees Fahrenheit.
 
 First lets read the csv rows into an array using the built-in [python csv package](https://docs.python.org/3/library/csv.html)
-
 
 ```python
 import csv
@@ -134,7 +135,7 @@ print(type(data[1][2]))
 <class 'float'>
 ```
 
-Now that we have some numbers lets convert the temperature to farenheit:
+Now that we have some numbers lets convert the temperature to Fahrenheit:
 
 ```python
 def convert_celsius_to_farenheit(celsius_deg):
@@ -215,7 +216,7 @@ Type "help", "copyright", "credits" or "license" for more information.
 '1.16.0'
 ```
 
-If you see any errors here they need to be fixed before proceeding.
+If you see any errors fix them before proceeding.
 
 Not lets plot some dummy data:
 
@@ -233,7 +234,7 @@ And you should have your first plot.
 
 # Plotting temperature data
 
-From here we just need to plug our temperature data array into matplotlib.
+From here we need to plug our temperature data array into matplotlib.
 
 ```python
 plt.plot(temperature_data)
@@ -247,7 +248,7 @@ Whoa, the x axis looks all wrong. Thats because we haven't added our dates to th
 
 # Parsing Dates
 
-To add the correct data to the x axis we need to create a new array with the dates parsed into `datetime` objects. To do this we use the [datetime package](https://docs.python.org/3/library/datetime.html) and  [`datetime.strptime`](https://docs.python.org/3/library/datetime.html#strftime-and-strptime-behavior) to parse the date from a string, and plug this data into matplotlib as the x axis. Matplotlib understands `datetime` objects and renders them accordingly:
+To add the correct data to the x axis we need to create a new array with the dates parsed into `datetime` objects. To do this we use the [datetime package](https://docs.python.org/3/library/datetime.html) and [`datetime.strptime`](https://docs.python.org/3/library/datetime.html#strftime-and-strptime-behavior) to parse the date from a string, and plug this data into matplotlib as the x axis. Matplotlib understands `datetime` objects and renders them accordingly:
 
 ```python
 from datetime import datetime
@@ -286,7 +287,7 @@ plt.savefig("January-2019-NWTC-Temp-2m-Plot-Pretty.png")
 
 ![Labeled Plot](January-2019-NWTC-Temp-2m-Plot-Pretty.png)
 
-In case I missed anything the code is shown below:
+Below are the contents of `plot_nrel_data.py`:
 
 `embed:dataviz-part1/parse_data.py`
 

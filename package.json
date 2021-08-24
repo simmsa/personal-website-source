@@ -46,7 +46,7 @@
   "scripts": {
     "build": "gatsby build",
     "develop": "gatsby develop",
-    "dev": "gatsby develop --verbose",
+    "dev": "gatsby develop --verbose -o",
     "deploy": "gatsby build && gh-pages -d public -b master",
     "format": "prettier --write src/**/*.{js,jsx}",
     "start": "npm run develop",

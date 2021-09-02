@@ -362,7 +362,7 @@ const Resume = () => (
               <Text>
                 Performed on-going analysis of strain gage TDMS data files to
                 verify nominal performance and to visualize and characterize
-                failed data streams of saturated strain gages.
+                failed data streams of water saturated strain gages.
               </Text>
             </li>
           </ul>,
@@ -398,9 +398,9 @@ const Resume = () => (
             </li>
             <li>
               <Text>
-                Designed and built relay controlled power bus circuit to
-                facilitate reliable data system operation with minimal hands on
-                intervention.
+                Designed and built web relay controlled power bus circuit to
+                facilitate reliable data system operation, and with minimal
+                hands on intervention.
               </Text>
             </li>
           </ul>,

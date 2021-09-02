@@ -398,8 +398,9 @@ const Resume = () => (
             </li>
             <li>
               <Text>
-                Designed and built power bus circuit to facilitate reliable data
-                system operation with minimal hands on intervention.
+                Designed and built relay controlled power bus circuit to
+                facilitate reliable data system operation with minimal hands on
+                intervention.
               </Text>
             </li>
           </ul>,

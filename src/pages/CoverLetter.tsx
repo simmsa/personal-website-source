@@ -335,7 +335,7 @@ const CoverLetter = () => (
         doing something that truly matters, and in applying for this new
         position I am hopeful that NREL and the Water Power group will take full
         advantage of the skills, experience, and passion I have to offer, while
-        also providing me a career that I find deeply satisfying.
+        also providing a career that makes the world a better place.
         <br />
         <br />
         {/* What have you done that matches the job description, and how did you excel at those things? */}

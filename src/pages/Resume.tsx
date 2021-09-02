@@ -391,9 +391,9 @@ const Resume = () => (
             </li>
             <li>
               <Text>
-                Collaborated with C·Power to spec, integrate, build, and
-                troubleshoot cost-effective custom built marine grade
-                electronics connectors.
+                Collaborated with C·Power, and contractor Sunwize, to spec,
+                integrate, build, and troubleshoot cost-effective custom built
+                marine grade electronics connectors.
               </Text>
             </li>
             <li>

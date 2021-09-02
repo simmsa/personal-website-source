@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunkAndrew_Simms_Personal_Website=self.webpackChunkAndrew_Simms_Personal_Website||[]).push([[49],{7417:function(e,n,t){var r=t(7294),l=t(9571);n.Z=function(){return r.createElement(l.Z,{title:"Coming Soon"},r.createElement("h1",null,"Coming Soon..."))}},564:function(e,n,t){t.r(n);var r=t(7294),l=t(7417);n.default=function(){return r.createElement(l.Z,null)}}}]);
+//# sourceMappingURL=component---src-pages-about-tsx-b6b13d55e51b53482361.js.map

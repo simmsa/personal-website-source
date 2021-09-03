@@ -4,7 +4,7 @@ import * as CSS from "csstype"
 const baseFontSize = 16
 const smallFontSize = baseFontSize * 0.7
 const textColor = "#000"
-const dividerColor = "rgba(0, 0, 0, 0.1)"
+// const dividerColor = "rgba(0, 0, 0, 0.1)"
 const pageWidth = "960px"
 const fontFamily =
   '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif'
@@ -70,29 +70,29 @@ const Title = (props: TitleProps) => {
   )
 }
 
-type SectionTitleProps = {
-  size?: number
-  children?: React.ReactNode
-  hasUnderline?: boolean
-}
+// type SectionTitleProps = {
+//   size?: number
+//   children?: React.ReactNode
+//   hasUnderline?: boolean
+// }
 
-const SectionTitle = (props: SectionTitleProps) => {
-  return (
-    <h3
-      style={{
-        fontSize: `${props.size ? props.size : baseFontSize * 1.5}px`,
-        borderBottom:
-          props.hasUnderline === true ? `0.5px solid ${dividerColor}` : "none",
-        paddingBottom: props.hasUnderline === true ? `3px` : "none",
-        width: props.hasUnderline === true ? pageWidth : "none",
-        fontFamily,
-        color: textColor,
-      }}
-    >
-      {props.children}
-    </h3>
-  )
-}
+// const SectionTitle = (props: SectionTitleProps) => {
+//   return (
+//     <h3
+//       style={{
+//         fontSize: `${props.size ? props.size : baseFontSize * 1.5}px`,
+//         borderBottom:
+//           props.hasUnderline === true ? `0.5px solid ${dividerColor}` : "none",
+//         paddingBottom: props.hasUnderline === true ? `3px` : "none",
+//         width: props.hasUnderline === true ? pageWidth : "none",
+//         fontFamily,
+//         color: textColor,
+//       }}
+//     >
+//       {props.children}
+//     </h3>
+//   )
+// }
 
 type TextProps = {
   size?: number
@@ -129,147 +129,147 @@ const Text = (props: TextProps) => {
   )
 }
 
-type EntryProps = {
-  title?: string
-  extraTitle?: string
-  company?: string
-  startDate?: string
-  endDate?: string
-  link?: string
-  location?: string
-  points: Array<string | string[] | React.ReactElement>
-}
+// type EntryProps = {
+//   title?: string
+//   extraTitle?: string
+//   company?: string
+//   startDate?: string
+//   endDate?: string
+//   link?: string
+//   location?: string
+//   points: Array<string | string[] | React.ReactElement>
+// }
 
-const Entry = (props: EntryProps) => {
-  const hasDate = props.startDate !== undefined && props.endDate !== undefined
-  return (
-    <Section>
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "row",
-          justifyContent: "flex-start",
-        }}
-      >
-        {hasDate ? (
-          <div
-            style={{
-              flexBasis: "80px",
-              flexGrow: 0,
-              flexShrink: 0,
-              marginRight: `${smallFontSize}px`,
-              marginBottom: `${smallFontSize}px`,
-              borderRight: `0.5px solid ${dividerColor}`,
-            }}
-          >
-            <Text isBold={true} size={smallFontSize} isAllUpper={true}>
-              {props.startDate}
-              -
-              <br />
-              {props.endDate}
-            </Text>
-          </div>
-        ) : null}
-        <div>
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "row",
-              paddingBottom: "0px",
-              marginBottom: "0px",
-              alignItems: "center",
-              justifyContent: "space-between",
-              width: `${hasDate ? 960 - 90 : 960}px`,
-              borderLeft: "none",
-            }}
-          >
-            {props.title !== undefined ? (
-              props.link !== undefined ? (
-                <div>
-                  <a href={props.link}>
-                    <Text isBold={true}>{props.title}</Text>
-                  </a>
-                </div>
-              ) : (
-                <div>
-                  <Text isBold={true}>{props.title}</Text>
-                </div>
-              )
-            ) : null}
-            {props.extraTitle !== undefined ? (
-              <div
-                style={{
-                  display: "flex",
-                  flexDirection: "row",
-                  alignItems: "center",
-                  flexGrow: 2,
-                  justifyContent: "center",
-                }}
-              >
-                <div
-                  style={{
-                    flexGrow: 2,
-                    backgroundColor: "#fff",
-                    borderBottom: `0.5px solid ${dividerColor}`,
-                    height: "1px",
-                    marginLeft: `${baseFontSize}px`,
-                    marginRight: `${baseFontSize}px`,
-                  }}
-                ></div>
-                <div style={{ top: "-3px", position: "relative" }}>
-                  <Text isAllUpper={true} size={smallFontSize}>
-                    {props.extraTitle}
-                  </Text>
-                </div>
-              </div>
-            ) : null}
-          </div>
-          {props.company !== undefined ? (
-            <div>
-              <Text isAllUpper={true} size={smallFontSize}>
-                {props.company}
-              </Text>
-              {props.location !== undefined ? (
-                <Text isAllUpper={true} size={smallFontSize}>
-                  {` - ${props.location}`}
-                </Text>
-              ) : null}
-            </div>
-          ) : null}
-          <ul style={{ margin: 0 }}>
-            {props.points.map(
-              (point: string | string[] | React.ReactElement, i: number) => {
-                if (Array.isArray(point)) {
-                  return (
-                    <ul key={point[0]}>
-                      {point.map((p) => {
-                        return (
-                          <li key={p}>
-                            <Text>{p}.</Text>
-                          </li>
-                        )
-                      })}
-                    </ul>
-                  )
-                } else {
-                  if (typeof point === "string") {
-                    return (
-                      <li key={point}>
-                        <Text>{point}.</Text>
-                      </li>
-                    )
-                  } else {
-                    return <div key={i}>{point}</div>
-                  }
-                }
-              }
-            )}
-          </ul>
-        </div>
-      </div>
-    </Section>
-  )
-}
+// const Entry = (props: EntryProps) => {
+//   const hasDate = props.startDate !== undefined && props.endDate !== undefined
+//   return (
+//     <Section>
+//       <div
+//         style={{
+//           display: "flex",
+//           flexDirection: "row",
+//           justifyContent: "flex-start",
+//         }}
+//       >
+//         {hasDate ? (
+//           <div
+//             style={{
+//               flexBasis: "80px",
+//               flexGrow: 0,
+//               flexShrink: 0,
+//               marginRight: `${smallFontSize}px`,
+//               marginBottom: `${smallFontSize}px`,
+//               borderRight: `0.5px solid ${dividerColor}`,
+//             }}
+//           >
+//             <Text isBold={true} size={smallFontSize} isAllUpper={true}>
+//               {props.startDate}
+//               -
+//               <br />
+//               {props.endDate}
+//             </Text>
+//           </div>
+//         ) : null}
+//         <div>
+//           <div
+//             style={{
+//               display: "flex",
+//               flexDirection: "row",
+//               paddingBottom: "0px",
+//               marginBottom: "0px",
+//               alignItems: "center",
+//               justifyContent: "space-between",
+//               width: `${hasDate ? 960 - 90 : 960}px`,
+//               borderLeft: "none",
+//             }}
+//           >
+//             {props.title !== undefined ? (
+//               props.link !== undefined ? (
+//                 <div>
+//                   <a href={props.link}>
+//                     <Text isBold={true}>{props.title}</Text>
+//                   </a>
+//                 </div>
+//               ) : (
+//                 <div>
+//                   <Text isBold={true}>{props.title}</Text>
+//                 </div>
+//               )
+//             ) : null}
+//             {props.extraTitle !== undefined ? (
+//               <div
+//                 style={{
+//                   display: "flex",
+//                   flexDirection: "row",
+//                   alignItems: "center",
+//                   flexGrow: 2,
+//                   justifyContent: "center",
+//                 }}
+//               >
+//                 <div
+//                   style={{
+//                     flexGrow: 2,
+//                     backgroundColor: "#fff",
+//                     borderBottom: `0.5px solid ${dividerColor}`,
+//                     height: "1px",
+//                     marginLeft: `${baseFontSize}px`,
+//                     marginRight: `${baseFontSize}px`,
+//                   }}
+//                 ></div>
+//                 <div style={{ top: "-3px", position: "relative" }}>
+//                   <Text isAllUpper={true} size={smallFontSize}>
+//                     {props.extraTitle}
+//                   </Text>
+//                 </div>
+//               </div>
+//             ) : null}
+//           </div>
+//           {props.company !== undefined ? (
+//             <div>
+//               <Text isAllUpper={true} size={smallFontSize}>
+//                 {props.company}
+//               </Text>
+//               {props.location !== undefined ? (
+//                 <Text isAllUpper={true} size={smallFontSize}>
+//                   {` - ${props.location}`}
+//                 </Text>
+//               ) : null}
+//             </div>
+//           ) : null}
+//           <ul style={{ margin: 0 }}>
+//             {props.points.map(
+//               (point: string | string[] | React.ReactElement, i: number) => {
+//                 if (Array.isArray(point)) {
+//                   return (
+//                     <ul key={point[0]}>
+//                       {point.map((p) => {
+//                         return (
+//                           <li key={p}>
+//                             <Text>{p}.</Text>
+//                           </li>
+//                         )
+//                       })}
+//                     </ul>
+//                   )
+//                 } else {
+//                   if (typeof point === "string") {
+//                     return (
+//                       <li key={point}>
+//                         <Text>{point}.</Text>
+//                       </li>
+//                     )
+//                   } else {
+//                     return <div key={i}>{point}</div>
+//                   }
+//                 }
+//               }
+//             )}
+//           </ul>
+//         </div>
+//       </div>
+//     </Section>
+//   )
+// }
 
 const today = new Date()
 
@@ -331,43 +331,44 @@ const CoverLetter = () => (
         Acquisition and Instrumentation Engineer (R7595) position! I have found
         my 2+ years at NREL to be exciting and incredibly satisfying. I enjoy
         coming into work everyday and working collaboratively towards the
-        mission of saving the planet. Part of my personality gravitates towards
-        doing something that truly matters, and in applying for this new
+        mission of saving the planet. I am enjoying the challenge of working in
+        the Marine Renewable Energy (MRE) sector and in applying for this new
         position I am hopeful that NREL and the Water Power group will take full
-        advantage of the skills, experience, and passion I have to offer, while
-        also providing a career that makes the world a better place.
+        advantage of the skills, experience, and passion I have to offer.
         <br />
         <br />
         {/* What have you done that matches the job description, and how did you excel at those things? */}
         In my current hands-on position as a research electronics technician I
         build and deploy professional quality custom data acquisition systems
-        (DAS) and instrumentation for cutting-edge marine renewable energy (MRE)
-        research. I am a team member of two currently deployed projects, the
-        MODAQ system on-board the C-Power SeaRAY and strain gages installed
-        inside of the Verdant Power Thermoplastic Blades. This experience gives
-        me a deep understanding of the big picture of planning, building,
-        deploying and documenting DAS solutions for the MRE industry, and an
-        appreciation of the challenge of data acquisition in a marine
-        environment.
+        (DAS) and instrumentation for cutting-edge MRE research including
+        building Scotchcast 2131 underwater splices and installation of marine
+        grade protective coatings for strain gages. I built and installed
+        equipment for two currently deployed high profile projects, the MODAQ
+        hardware on-board the C-Power SeaRAY and strain gages installed inside
+        of the Verdant Power Thermoplastic Blades. This experience gives me a
+        deep understanding of the not only the details, but also the big picture
+        of planning, building, deploying and documenting DAS solutions for the
+        MRE industry, and an appreciation of the challenge of data acquisition
+        in a marine environment.
         <br />
         <br />
-        In my past positions as a mobile, web, and firmware developer I built
+        In my past positions as a mobile, web, and firmware developer I coded up
         small to medium sized custom applications for small businesses and
         startups. I learned to be adaptable, methodical, curious, and tenacious.
         My experiences ranges from writing near real-time Haversine distance
         ranking algorithms in TypeScript to optimizing Bezier curve calculation
         algorithms in C. I have programmed on multiple platforms and
         technologies including HTML/CSS, PHP/SQL/Wordpress, Python/Django,
-        C/Arduino, JavaScript/Node.js, React Native and Typescript/React.js.I am
-        familiar with many different software development tools including Git,
-        Github, Linux, and Vim. This experience gives me a head start on the
-        programming challenges I would face in this position and I am hopeful
-        that my skills will be useful programming LabVIEW, SoC hardware and FPGA
-        devices.
+        C/Arduino, JavaScript/Node.js, React Native and Typescript/React.js. I
+        am familiar with many different software development tools including
+        Git, Github, Linux, and Vim. This experience gives me a head start on
+        the programming challenges I would face in this position and I am
+        hopeful that my skills will be useful programming LabVIEW, SoC hardware
+        and FPGA devices.
         <br />
         <br />I also enjoy programming as a hobby and in my free time developed
         and built a Raspberry Pi (RPi) based{" "}
-        <Text link="https://github.com/simmsa/home_das">Home DAS</Text> which
+        <Text link="https://github.com/simmsa/home_das">"Home DAS"</Text> which
         uses Python code to monitor and collect on-demand 240 Hz amperage data
         which is visualized with a web server written in Next.js and Typescript
         for monitoring and collecting water usage data of a dosing pump system.
@@ -387,14 +388,27 @@ const CoverLetter = () => (
         by only 13%!
         <br />
         <br />
+        {/* Why I would fit in at NREL */}
+        There are many ways I complement the skills of the Lab and At Sea R&D
+        team. My business degree allows me to be effective estimating time and
+        budgets. My web development and UI design skills are strong and knowing
+        WordPress, SQL and PHP and means I could contribute to MODAQ Web right
+        away. I have extensive experience with synchronous programming and would
+        be good at projects involving microcontrollers and single board
+        computers, specifically projects aiming to decrease the cost of current
+        data acquisition systems. I have a good relationship with Flatirons
+        Campus Research Operations, and would be effective at distributing work
+        to that team. And my broad range of experience gives me the ability to
+        communicate effectively with a wide range of colleagues and customers.
+        <br />
+        <br />
         In a lot of ways, this is the perfect job for me. I get to leverage my
         skills and knowledge gained as a research electronics technician and
-        blend them with with my software development experience and my B.S
+        blend them with with my software development experience and my B.S.
         business/finance degree. My experience has taught me the time and effort
         required to do quality work, and I will use this experience to plan,
         develop, document, and deploy the next generation of data acquisition
         systems for MRE and beyond.
-        {/* Why I would fit in at NREL */}
         <br />
         <br />I look forward to discussing this Data Acquisition and
         Instrumentation Engineer position and my qualifications in more detail.
@@ -411,8 +425,13 @@ const CoverLetter = () => (
     </Section>
   </Container>
 )
-
 export default CoverLetter
+
+// I find joy in thinking critically to solve
+//         difficult problems, but also believe that some problems can be pushed
+//         forward with a "Just Do It" mentality. I also am willing to do the
+//         thankless tasks for the good of the group.
+
 // In reference to your responsibilities and requirements listed in the job
 // description, I have:
 // <br />

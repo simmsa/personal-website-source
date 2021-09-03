@@ -431,8 +431,8 @@ const Resume = () => (
             </li>
             <li>
               <Text>
-                Supported installation, documentation, and quality control (QC)
-                of custom DAS sealed in a pressure canister.
+                Supported installation, documentation, & quality control (QC) of
+                custom DAS sealed in a pressure canister.
               </Text>
             </li>
             <li>
@@ -602,9 +602,6 @@ const Resume = () => (
               </Text>
             </li>
           </ul>,
-          <br />,
-          <br />,
-          <br />,
           <br />,
           <br />,
           <li>
@@ -846,9 +843,6 @@ const Resume = () => (
               </li>
             </ul>
           </>,
-          <br />,
-          <br />,
-          <br />,
           <br />,
         ]}
       />
